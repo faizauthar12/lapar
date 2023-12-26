@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpStatus,
+  Param,
   Patch,
   Post,
   Res,
@@ -12,7 +13,6 @@ import { Response } from 'express';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { LocationService } from './location.service';
 import { LocationSchema } from './location.entity';
-import { Param } from '@nestjs/common/decorators';
 import { UpdateLocationDto } from './dto/update-location.dto';
 
 @Controller('location')

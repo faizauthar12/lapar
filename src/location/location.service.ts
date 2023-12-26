@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LocationSchema } from './location.entity';
 import { Repository } from 'typeorm';
+import { LocationSchema } from './location.entity';
 import { NotFoundException } from '@nestjs/common/exceptions';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { UpdateLocationDto } from './dto/update-location.dto';
