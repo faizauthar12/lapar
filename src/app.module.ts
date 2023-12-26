@@ -6,6 +6,8 @@ import { AppService } from './app.service';
 import { LocationSchema } from './location/location.entity';
 import { CustomerSchema } from './customer/customer.entity';
 import { CustomerModule } from './customer/customer.module';
+import { MenuSchema } from './menu/menu.entity';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
   imports: [
@@ -13,11 +15,12 @@ import { CustomerModule } from './customer/customer.module';
       type: 'sqlite',
       database: 'db/sqlite.db',
       synchronize: true,
-      entities: [LocationSchema, CustomerSchema],
+      entities: [LocationSchema, CustomerSchema, MenuSchema],
       autoLoadEntities: true,
     }),
     LocationModule,
     CustomerModule,
+    MenuModule,
   ],
   controllers: [AppController],
   providers: [AppService],
