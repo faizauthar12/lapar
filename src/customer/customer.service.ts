@@ -3,8 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CustomerSchema } from './customer.entity';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { CreateLocationDto } from 'src/location/dto/create-location.dto';
-import { LocationSchema } from 'src/location/location.entity';
 
 @Injectable()
 export class CustomerService {
@@ -13,22 +11,8 @@ export class CustomerService {
     private customersRepository: Repository<CustomerSchema>,
   ) {}
 
-  async create(
-    createCustomerDto: CreateCustomerDto,
-    createLocationDto: CreateLocationDto,
-  ): Promise<CustomerSchema> {
-    const location = new LocationSchema();
-    location.name = createLocationDto.name;
-    location.address = createLocationDto.address;
-    location.latitude = createLocationDto.latitude;
-    location.longitude = createLocationDto.longitude;
-
-    const newCustomer = new CustomerSchema();
-    newCustomer.name = createCustomerDto.name;
-    newCustomer.email = createCustomerDto.email;
-    newCustomer.phone_number = createCustomerDto.phone_number;
-    newCustomer.location = location;
-
+  async create(createCustomerDto: CreateCustomerDto): Promise<CustomerSchema> {
+    const newCustomer = this.customersRepository.create(createCustomerDto);
     return await this.customersRepository.save(newCustomer);
   }
 

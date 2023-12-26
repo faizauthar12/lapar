@@ -43,10 +43,7 @@ export class CustomerController {
     @Body() createCustomerDto: CreateCustomerDto,
     @Res() response: Response,
   ) {
-    const customer = await this.customersService.create(
-      createCustomerDto,
-      createCustomerDto.location,
-    );
+    const customer = await this.customersService.create(createCustomerDto);
 
     response.status(HttpStatus.CREATED).json({
       status: HttpStatus.CREATED,
