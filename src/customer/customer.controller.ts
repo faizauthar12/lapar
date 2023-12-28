@@ -10,9 +10,9 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CustomerSchema } from './entities/customer.entity';
 
 @ApiTags('customer')
@@ -41,7 +41,7 @@ export class CustomerController {
   @ApiOperation({ summary: 'Get a customer' })
   @ApiResponse({
     status: 200,
-    description: 'Found Customers',
+    description: 'Found Customer',
     type: CustomerSchema,
   })
   async findOne(@Param('id') id: string, @Res() response: Response) {
