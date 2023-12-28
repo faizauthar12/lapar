@@ -47,6 +47,9 @@ $ pnpm run start:prod
 ```
 
 ## Swagger
+```
+http://localhost:3000/api
+```
 [swagger](http://localhost:3000/api)
 
 ## Test
