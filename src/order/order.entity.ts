@@ -7,10 +7,10 @@ export class OrderSchema {
   @PrimaryGeneratedColumn()
   public orderId: number;
 
-  @Column('simple-array')
-  public customerId: string[];
+  @Column()
+  public customerId: number;
 
-  @Column('simple-array')
+  @Column('simple-array', { nullable: true })
   public menuId: string[];
 
   @Column('simple-array')
