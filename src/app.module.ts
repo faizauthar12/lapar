@@ -4,7 +4,7 @@ import { LocationModule } from './location/location.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LocationSchema } from './location/location.entity';
-import { CustomerSchema } from './customer/customer.entity';
+import { CustomerSchema } from './customer/entities/customer.entity';
 import { CustomerModule } from './customer/customer.module';
 import { MenuSchema } from './menu/menu.entity';
 import { MenuModule } from './menu/menu.module';

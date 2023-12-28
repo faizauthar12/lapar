@@ -1,4 +1,4 @@
-import { CustomerSchema } from 'src/customer/customer.entity';
+import { CustomerSchema } from 'src/customer/entities/customer.entity';
 import { MenuSchema } from 'src/menu/menu.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 

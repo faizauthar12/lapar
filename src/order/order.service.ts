@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { OrderSchema } from './order.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { MenuSchema } from 'src/menu/menu.entity';
-import { CustomerSchema } from 'src/customer/customer.entity';
+import { CustomerSchema } from 'src/customer/entities/customer.entity';
 import { UpdateOrderDto } from './dto/update-order.dto';
 
 @Injectable()

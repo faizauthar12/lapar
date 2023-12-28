@@ -12,12 +12,21 @@ import {
 import { Response } from 'express';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CustomerSchema } from './entities/customer.entity';
 
+@ApiTags('customer')
 @Controller('customer')
 export class CustomerController {
   constructor(private customersService: CustomerService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Get customers' })
+  @ApiResponse({
+    status: 200,
+    description: 'Found Customers',
+    type: [CustomerSchema],
+  })
   async findAll(@Res() response: Response) {
     const customers = await this.customersService.findAll();
 
@@ -29,6 +38,12 @@ export class CustomerController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get a customer' })
+  @ApiResponse({
+    status: 200,
+    description: 'Found Customers',
+    type: CustomerSchema,
+  })
   async findOne(@Param('id') id: string, @Res() response: Response) {
     const customer = await this.customersService.findOne(+id);
     response.status(HttpStatus.OK).json({
@@ -39,6 +54,7 @@ export class CustomerController {
   }
 
   @Post()
+  @ApiOperation({ summary: 'Create customer' })
   async create(
     @Body() createCustomerDto: CreateCustomerDto,
     @Res() response: Response,
@@ -53,6 +69,7 @@ export class CustomerController {
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update customer' })
   async update(
     @Param('id') id: string,
     @Body() updateCustomerDto: CreateCustomerDto,
@@ -68,6 +85,7 @@ export class CustomerController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete customer' })
   async remove(@Param('id') id: string, @Res() response: Response) {
     const deletedStatus = await this.customersService.remove(+id);
 
