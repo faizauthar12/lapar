@@ -10,14 +10,23 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { MenuService } from './menu.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
+import { MenuSchema } from './menu.entity';
 
+@ApiTags('menu')
 @Controller('menu')
 export class MenuController {
   constructor(private menusService: MenuService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Get Menus' })
+  @ApiResponse({
+    status: 200,
+    description: 'Found Menus',
+    type: [MenuSchema],
+  })
   async findAll(@Res() response: Response) {
     const menus = await this.menusService.findAll();
 
@@ -29,6 +38,12 @@ export class MenuController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get Menu' })
+  @ApiResponse({
+    status: 200,
+    description: 'Found Menu',
+    type: MenuSchema,
+  })
   async findOne(@Param('id') id: string, @Res() response: Response) {
     const menu = await this.menusService.findOne(+id);
     response.status(HttpStatus.OK).json({
@@ -39,6 +54,7 @@ export class MenuController {
   }
 
   @Post()
+  @ApiOperation({ summary: 'Create menu' })
   async create(
     @Body() createMenuDto: CreateMenuDto,
     @Res() response: Response,
@@ -53,6 +69,7 @@ export class MenuController {
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update menu' })
   async update(
     @Param('id') id: string,
     @Body() updateMenuDto: CreateMenuDto,
@@ -68,6 +85,7 @@ export class MenuController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete menu' })
   async remove(@Param('id') id: string, @Res() response: Response) {
     const menu = await this.menusService.remove(+id);
 
