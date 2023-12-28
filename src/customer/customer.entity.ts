@@ -1,8 +1,10 @@
 import { LocationSchema } from 'src/location/location.entity';
+import { OrderSchema } from 'src/order/order.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -24,4 +26,7 @@ export class CustomerSchema {
   @OneToOne(() => LocationSchema, { cascade: true })
   @JoinColumn()
   location: LocationSchema;
+
+  @OneToMany(() => OrderSchema, (orderSchema) => orderSchema.customer)
+  orderSchema: OrderSchema[];
 }

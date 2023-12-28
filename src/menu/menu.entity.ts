@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderSchema } from 'src/order/order.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('menu')
 export class MenuSchema {
@@ -16,4 +17,7 @@ export class MenuSchema {
 
   @Column({ nullable: false })
   stock: number;
+
+  @OneToMany(() => OrderSchema, (orderSchema) => orderSchema.menu)
+  orderSchema: OrderSchema[];
 }
