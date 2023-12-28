@@ -5,15 +5,21 @@ import { LocationSchema } from 'src/location/location.entity';
 export class CreateCustomerDto {
   @IsNotEmpty({ message: 'Name is required' })
   @IsString()
-  @ApiProperty()
+  @ApiProperty({ example: 'John', description: 'Name of the customer' })
   name: string;
 
   @IsString()
-  @ApiProperty()
+  @ApiProperty({
+    example: 'John@doe.com',
+    description: 'Email of the customer',
+  })
   email: string;
 
   @IsString()
-  @ApiProperty()
+  @ApiProperty({
+    example: '085155555',
+    description: 'Phone number of the customer',
+  })
   phone_number: string;
 
   @IsNotEmpty({ message: 'Location is required' })
